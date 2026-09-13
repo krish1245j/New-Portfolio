@@ -1,34 +1,27 @@
-# New-Portfolio
+# Krish — Developer Portfolio
 
-A modern, interactive developer portfolio built with **React, TypeScript, and Vite**.
+A modern, interactive portfolio built to showcase my work, projects, technical skills, achievements, and engineering journey.
 
-Designed to showcase my projects, technical skills, achievements, engineering journey, and the systems I build.
+## ⚡ Built With
 
-## 🚀 Tech Stack
+* React
+* TypeScript
+* Vite
+* Modern CSS
+* Interactive animations & effects
 
-* **React**
-* **TypeScript**
-* **Vite**
-* **CSS**
-* **JavaScript / TypeScript**
-* Interactive UI animations and custom effects
+## 🚀 Highlights
 
-## ✨ Features
-
-* Interactive hero section
-* About / developer manifesto
-* Skills and technology showcase
-* Project showcase
-* Achievements section
-* Engineering journey
-* Systems & architecture visualization
-* Interactive terminal section
-* Custom cursor effects
-* Particle effects
-* Magnetic interactions
-* Tilt cards
+* Interactive and responsive UI
+* Custom cursor & particle effects
 * Smooth scrolling
-* Responsive design
+* Magnetic & tilt interactions
+* Project showcase
+* Technical skills
+* Achievements
+* Engineering journey
+* Systems & architecture visualizations
+* Interactive terminal experience
 
 ## 📂 Project Structure
 
@@ -51,69 +44,16 @@ src/
 ├── main.tsx
 └── types.ts
 ```
+## 🌐 Live Website
 
-## 🛠️ Run Locally
-
-### Prerequisites
-
-* Node.js
-* npm
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/krish1245j/New-Portfolio.git
-cd New-Portfolio
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-The portfolio will be available at the local development URL shown by Vite.
-
-## 🏗️ Build for Production
-
-```bash
-npm run build
-```
-
-To preview the production build:
-
-```bash
-npm run preview
-```
-
-## 🌐 Deployment
-
-This project is designed to be deployed as a frontend application using **Vercel**.
-
-The GitHub repository is:
-
-**Krish — New Portfolio**
+**Portfolio:** Coming soon
 
 ## 👨‍💻 About
 
-I'm a developer focused on building real-world software, exploring modern technologies, and continuously improving my engineering skills.
+I'm a developer who enjoys building real-world software, exploring new technologies, and turning ideas into working systems.
 
-This portfolio is a representation of my work, projects, experiments, and technical journey.
-
-## 📌 Status
-
-**Active project — continuously evolving.**
-
-More projects, experiments, and improvements will be added over time.
+This portfolio is a collection of my work, experiments, projects, and engineering journey.
 
 ---
 
-Built with React + TypeScript.
+**Designed & built by Krish.**
