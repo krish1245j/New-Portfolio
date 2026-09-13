@@ -49,7 +49,7 @@ export default function Header() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#05070d]/85 backdrop-blur-xl border-b border-[#1e293b]/50"
+      className="fixed top-0 left-0 w-full z-50 bg-[#05070d]/95 md:bg-[#05070d]/85 backdrop-blur-sm md:backdrop-blur-xl border-b border-[#1e293b]/50"
     >
       {/* Scroll Progress Bar at the Top */}
       <div className="w-full h-0.5 bg-[#1a2332] overflow-hidden">

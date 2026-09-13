@@ -127,3 +127,23 @@ html.lenis body {
     scroll-behavior: auto !important;
   }
 }
+
+/* --- Mobile-only performance tweaks (phones/coarse pointers). Desktop (md+
+   and fine pointers) is completely untouched by this block. --- */
+@media (max-width: 767px), (pointer: coarse) {
+  /* The grain texture is a full-viewport, mix-blend-mode layer. Re-painting
+     it on an infinite animation loop is one of the biggest scroll-jank
+     sources on mobile GPUs — keep the texture, drop the per-frame shift. */
+  .grain-layer {
+    animation: none;
+  }
+
+  /* Same story for the three large blurred ambient blobs in the background:
+     stop animating their transform so the browser isn't continuously
+     re-rendering a 140–180px blur filter every frame. */
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-drift-c {
+    animation: none;
+  }
+}

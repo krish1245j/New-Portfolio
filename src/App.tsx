@@ -43,9 +43,9 @@ export default function App() {
           
           {/* Ambient Grid, Glow & Interactive Particle Network Background */}
           <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-25">
-            <div className="absolute -top-[20%] left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px] animate-drift-a"></div>
-            <div className="absolute top-[45%] -right-[10%] w-[550px] h-[550px] bg-cyan-400/10 rounded-full blur-[160px] animate-drift-b"></div>
-            <div className="absolute -bottom-[10%] left-10 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[180px] animate-drift-c"></div>
+            <div className="absolute -top-[20%] left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[60px] md:blur-[140px] animate-drift-a"></div>
+            <div className="absolute top-[45%] -right-[10%] w-[550px] h-[550px] bg-cyan-400/10 rounded-full blur-[70px] md:blur-[160px] animate-drift-b"></div>
+            <div className="absolute -bottom-[10%] left-10 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[80px] md:blur-[180px] animate-drift-c"></div>
             <svg className="w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="sys-grid-pat" width="48" height="48" patternUnits="userSpaceOnUse">

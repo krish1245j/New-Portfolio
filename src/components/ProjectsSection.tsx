@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import SpotlightCard from './effects/SpotlightCard';
 import Magnetic from './effects/Magnetic';
+import useIsMobile from '../hooks/uselsMobile';
 
 interface Project {
   id: string;
@@ -45,7 +46,7 @@ interface Project {
   };
   monitor: ReactNode;
 }
-
+ 
 const PROJECTS: Project[] = [
   // Project 01
   {
@@ -257,6 +258,7 @@ const ProjectStackCard: FC<ProjectStackCardProps> = ({
   onActive,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -292,23 +294,17 @@ const ProjectStackCard: FC<ProjectStackCardProps> = ({
 
   const topOffset = STACK_BASE_OFFSET + index * STACK_STEP;
 
-  return (
-    <div
-      ref={setRefs}
-      className="relative w-full"
-      style={{ minHeight: isLast ? '100vh' : '135vh' }}
-    >
-      <motion.div
-        style={{
-          scale,
-          opacity,
-          y: translateY,
-          top: topOffset,
-          zIndex: 10 + index,
-        }}
-        data-cursor="project"
-        className="sticky w-full pb-8"
-      >
+  // On phones, skip the desktop "sticky stack" treatment entirely. That
+  // effect reserves a fixed 135vh/100vh scroll runway per card sized for
+  // desktop's 2-column layout — on mobile the same content stacks into a
+  // single column and runs noticeably taller, so the runway ran out before
+  // a card finished animating in and the next card would start sliding on
+  // top of it, cutting content off / overlapping cards mid-scroll. Phones
+  // get a plain stacked layout (auto height, simple fade-in, no sticky/
+  // scroll-linked transforms), which fixes the overlap and removes a
+  // per-frame scroll calculation on every card. Desktop is unchanged.
+  const cardBody = (
+    <>
         <SpotlightCard className="rounded-xl" color={project.spotlightColor} size={420}>
           <div className="p-6 md:p-8 bg-[#0f1726] border border-[#1e293b] rounded-xl flex flex-col gap-6 relative overflow-hidden shadow-2xl">
             {/* Project Header Bar */}
@@ -461,6 +457,44 @@ const ProjectStackCard: FC<ProjectStackCardProps> = ({
             </Magnetic>
           </div>
         </div>
+    </>
+  );
+
+  if (isMobile) {
+    return (
+      <div ref={setRefs} className="relative w-full pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          data-cursor="project"
+          className="w-full pb-8"
+        >
+          {cardBody}
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={setRefs}
+      className="relative w-full"
+      style={{ minHeight: isLast ? '100vh' : '135vh' }}
+    >
+      <motion.div
+        style={{
+          scale,
+          opacity,
+          y: translateY,
+          top: topOffset,
+          zIndex: 10 + index,
+        }}
+        data-cursor="project"
+        className="sticky w-full pb-8"
+      >
+        {cardBody}
       </motion.div>
     </div>
   );
@@ -482,7 +516,7 @@ export default function ProjectsSection() {
   return (
     <div className="relative w-full" id="projects">
       {/* Sticky Mini-Nav: title + real-time-synced project selector */}
-      <div className="sticky top-16 z-30 bg-[#05070d]/90 backdrop-blur-md border-b border-[#1e293b]/50 py-4">
+      <div className="sticky top-16 z-30 bg-[#05070d]/95 md:bg-[#05070d]/90 backdrop-blur-none md:backdrop-blur-md border-b border-[#1e293b]/50 py-4">
         <div className="flex flex-col gap-2 max-w-[1440px] mx-auto px-5 md:px-10">
           <div className="flex items-center gap-2 font-mono text-xs text-cyan-400">
             <Terminal className="w-4 h-4" />

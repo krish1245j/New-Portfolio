@@ -26,6 +26,13 @@ export default function ParticleField() {
     if (!ctx) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Phones: skip the animated version. The full loop recomputes drift +
+    // pairwise link distances for every particle on every frame — real CPU
+    // cost with no payoff on touch devices (there's no cursor to react to).
+    // Render one static frame instead, same as prefers-reduced-motion.
+    const isMobile =
+      window.matchMedia('(max-width: 767px)').matches ||
+      window.matchMedia('(pointer: coarse)').matches;
 
     let width = 0;
     let height = 0;
@@ -154,7 +161,7 @@ export default function ParticleField() {
     window.addEventListener('resize', resize);
     document.addEventListener('visibilitychange', handleVisibility);
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || isMobile) {
       drawStatic();
     } else {
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
